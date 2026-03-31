@@ -1,0 +1,22 @@
+#pragma once
+#ifndef HUMANA_HPP
+#define HUMANA_HPP
+
+#include <iostream>
+#include "Weapon.hpp"
+
+class HumanA {
+	private:
+		std::string name;
+		Weapon& weapon;
+	public:
+		void attack() ;
+		HumanA(std::string name, Weapon& weapon) ;
+		~HumanA() ;
+
+
+} ;
+
+// Weapon por referencia: hay que iniciarlo en el constructor
+
+#endif
