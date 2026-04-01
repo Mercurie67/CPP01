@@ -46,4 +46,7 @@ void	Harl::complain(std::string level)
 		default:
 			std::cout << "Not found\n";
 	}
-} 
+}
+
+Harl::Harl() {}
+Harl::~Harl() {}

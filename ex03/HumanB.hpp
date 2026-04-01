@@ -11,8 +11,8 @@ class HumanB {
 		Weapon* weapon;
 	public:
 		void attack() ;
-		HumanB(std::string name) ;
 		void setWeapon(Weapon* weapon) ;
+		HumanB(std::string name) ;		
 		~HumanB() ;
 
 

@@ -35,3 +35,6 @@ void Harl::complain(std::string level) {
 			std::cout << "Unrecognized level\n" ;
     }
 }
+
+Harl::Harl() {}
+Harl::~Harl() {}
