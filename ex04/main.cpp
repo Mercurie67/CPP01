@@ -13,6 +13,9 @@ int main(int ac, char *av[])
 	std::string s1 = av[2];
 	std::string s2 = av[3];
 
+	if(s1.empty())
+		return 0;
+
 	std::ifstream rFile(av[1]);
 	if(rFile.good() == false)
 	{
@@ -32,31 +35,20 @@ int main(int ac, char *av[])
 		std::cout << "Error opening " << filename << "\n";
 		return 1;
 	}
+
 	std::string line;
-	if (s1 == s2)
-	{
-		while (std::getline(rFile, line)) 
-		{ 
-			wFile << line;
-			if(!rFile.eof())
-				wFile << "\n";
+	while (std::getline(rFile, line)) 
+	{ 
+		std::size_t pos = 0;
+		while((pos = line.find(s1, pos)) != std::string::npos)
+		{
+			line.erase(pos, s1.length());
+			line.insert(pos, s2);
+			pos += s2.length();
 		}
-	}
-    else
-	{
-		int length1 = s1.size();
-		std::size_t pos;
-		while (std::getline(rFile, line)) 
-		{ 
-			while((pos = line.find(s1)) != std::string::npos)
-			{
-				line.erase(pos, length1);
-				line.insert(pos, s2);
-			}
-			wFile << line;
-			if(!rFile.eof())
-				wFile << "\n";
-		}
+		wFile << line;
+		if(!rFile.eof())
+			wFile << "\n";
 	}
     rFile.close();
 	wFile.close();

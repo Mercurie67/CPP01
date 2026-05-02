@@ -1,0 +1,26 @@
+NAME = Sed
+
+CXX = c++
+CXXFLAGS = -Wll -Wextr -Werror -std=c++98
+
+SRC = min.cpp \
+	  
+OBJ = $(SRC:.cpp=.o)
+
+ll: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+clen:
+	rm -f $(OBJ)
+
+fclen: clen
+	rm -f $(NAME)
+
+re: fclen ll
+
+.PHONY:		ll clen fclen re
