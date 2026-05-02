@@ -32,19 +32,31 @@ int main(int ac, char *av[])
 		std::cout << "Error opening " << filename << "\n";
 		return 1;
 	}
-    std::string line;
-	int length1 = s1.size();
-	std::size_t pos;
-	while (std::getline(rFile, line)) 
-	{ 
-		while((pos = line.find(s1)) != std::string::npos)
-		{
-			line.erase(pos, length1);
-			line.insert(pos, s2);
+	std::string line;
+	if (s1 == s2)
+	{
+		while (std::getline(rFile, line)) 
+		{ 
+			wFile << line;
+			if(!rFile.eof())
+				wFile << "\n";
 		}
-		wFile << line;
-		if(!rFile.eof())
-			wFile << "\n";
+	}
+    else
+	{
+		int length1 = s1.size();
+		std::size_t pos;
+		while (std::getline(rFile, line)) 
+		{ 
+			while((pos = line.find(s1)) != std::string::npos)
+			{
+				line.erase(pos, length1);
+				line.insert(pos, s2);
+			}
+			wFile << line;
+			if(!rFile.eof())
+				wFile << "\n";
+		}
 	}
     rFile.close();
 	wFile.close();
